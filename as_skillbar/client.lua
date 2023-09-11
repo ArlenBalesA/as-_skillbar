@@ -1,6 +1,5 @@
 local chance = 0
 local skillGap = 20
-local ASCore = exports['as-core']:GetCoreObject()
 
 function openGui(sentLength,taskID,namesent,chancesent,skillGapSent)
     Wait(1000)
@@ -39,7 +38,7 @@ RegisterNUICallback('taskEnd', function(data, cb)
     closeNormalGui()
     if (tonumber(data.taskResult) < (chance + 20) and tonumber(data.taskResult) > (chance))  then
         activeTasks = 3
-        --TriggerEvent("notification","Success!")
+        --TriggerEvent("ication","Success!")
         factor = 1.0
     else
         FactorFunction(false)
@@ -59,13 +58,11 @@ function FactorFunction(pos)
         end
         if factor == 0.5 and calm then
             calm = false
-                ASCore.Functions.Notify('You are very frustrated, calm down first.', 'error')
         end
         TriggerEvent("factor:restore")        
     else
         if factor > 1.0 or factor == 0.9 then
             if not calm then
-                ASCore.Functions.Notify('You have calmed down', 'success')
                 calm = true
             end            
             factor = 1.0
